@@ -2,7 +2,7 @@ import {Router} from 'express'
 import {listUsers} from '../controllers/user.controller'
 import {listPosts} from '../controllers/post.controller'
 import {photoUser} from '../controllers/photo.controller'
-import {createAudit,getAudits,updateAudits,deleteAudits} from '../controllers/audit.controller'
+import {createAudit,getAudits,updateAudits,deleteAudits,getAuditId,getAuditsB64,getAuditIdB64} from '../controllers/audit.controller'
 const router = Router()
 ///VIEW USERS
 router.get('/api/user',listUsers)
@@ -13,7 +13,7 @@ router.get('/api/user',listUsers)
  *      tags:
  *        - Usuarios
  *      summary: "Listar usuarios"
- *      description: Lista de usuarios totales de la api externa, cada registro de las peticiones es almacenado en pg
+ *      description: Lista de usuarios totales de la api externa, cada registro de las peticiones es almacenado en PG
  *      
  *      responses:
  *        '200':
@@ -65,7 +65,7 @@ router.get('/api/photo/:userId',photoUser)
  *              type: integer
  *      responses:
  *        '200':
- *          description: Retorna lista de fotos y crea registro en la base de datos
+ *          description: Operación exitosa
  *        '500':
  *          description: Error al realizar la consulta
  *        '404':
@@ -73,6 +73,62 @@ router.get('/api/photo/:userId',photoUser)
  *      security:
  *       - bearerAuth: []
  */
+
+
+
+///VIEW AUDITS B64
+router.get('/api/audit/base',getAuditsB64)
+/**
+ * @openapi
+ * /api/audit/base:
+ *    get:
+ *      tags:
+ *        - Regitros en Base64
+ *      summary: "Listar registro de peticiones"
+ *      description: Lista del registro historico de peticiones en formato base64
+ *      responses:
+ *        '200':
+ *          description: Operación exitosa
+ *        '500':
+ *          description: Error al realizar la consulta
+ *        '404':
+ *          description: Error al realizar la consulta
+ *      security:
+ *       - bearerAuth: []
+ */
+
+
+///GET AUDIT
+router.get('/api/audit/base/:id',getAuditIdB64)
+
+/**
+ * @openapi
+ * /api/audit/base/{id}:
+ *    get:
+ *      tags:
+ *        - Regitros en Base64
+ *      summary: "Consultar registro por id en formato base64"
+ *      description: Consulta los registros por id en formato base 64
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true
+ *            description: id Numeric required
+ *            schema:
+ *              type: integer
+ *      responses:
+ *        '204':
+ *          description: Operacion exitosa
+ *        '500':
+ *          description: Error al realizar la consulta
+ *        '404':
+ *          description: Se ha eliminado el registro exitosamente
+ *      security:
+ *       - bearerAuth: []
+ */
+
+
+
 ///CREATE AUDIT
 router.post('/api/audit/create',createAudit)
 /**
@@ -80,7 +136,7 @@ router.post('/api/audit/create',createAudit)
  * /api/audit/create:
  *    post:
  *      tags:
- *        - Audit
+ *        - Regitros
  *      summary: "Crear un registro de petición"
  *      description: Crea un registro de peticion en PG
  *      requestBody:
@@ -105,12 +161,12 @@ router.get('/api/audit',getAudits)
  * /api/audit:
  *    get:
  *      tags:
- *        - Audit
+ *        - Regitros
  *      summary: "Listar registro de peticiones"
  *      description: Lista del registro historico de peticiones
  *      responses:
  *        '200':
- *          description: Retorna lista de fotos y crea registro en la base de datos
+ *          description: Operación exitosa
  *        '500':
  *          description: Error al realizar la consulta
  *        '404':
@@ -118,6 +174,37 @@ router.get('/api/audit',getAudits)
  *      security:
  *       - bearerAuth: []
  */
+
+
+
+///GET AUDIT
+router.get('/api/audit/:id',getAuditId)
+
+/**
+ * @openapi
+ * /api/audit/{id}:
+ *    get:
+ *      tags:
+ *        - Regitros
+ *      summary: "Consultar registro por id"
+ *      description: Consulta los registros por id
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true
+ *            description: id Numeric required
+ *            schema:
+ *              type: integer
+ *      responses:
+ *        '204':
+ *          description: Operacion exitosa
+ *        '500':
+ *          description: Error al realizar la consultax
+ *      security:
+ *       - bearerAuth: []
+ */
+
+
 ///UPDATE AUDITS
 router.put('/api/audit/:id',updateAudits)
 /**
@@ -125,7 +212,7 @@ router.put('/api/audit/:id',updateAudits)
  * /api/audit/{id}:
  *    put:
  *      tags:
- *        - Audit
+ *        - Regitros
  *      summary: "Editar registro de petición por id"
  *      description: Edita los registros de peticiónes a la api externa
  *      requestBody:
@@ -150,15 +237,16 @@ router.put('/api/audit/:id',updateAudits)
  *      security:
  *       - bearerAuth: []
  */
+
+
 ///DELETE AUDITS
 router.delete('/api/audit/:id',deleteAudits)
-
 /**
  * @openapi
  * /api/audit/{id}:
  *    delete:
  *      tags:
- *        - Audit
+ *        - Regitros
  *      summary: "Eliminar registro de petición por id"
  *      description: Elimina los registros de peticiónes a la api externa
  *      parameters:
@@ -178,4 +266,6 @@ router.delete('/api/audit/:id',deleteAudits)
  *      security:
  *       - bearerAuth: []
  */
+
+
 export default router

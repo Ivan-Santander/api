@@ -31,6 +31,18 @@ export const getAudits = async (req:Request, res:Response)=>{
     }
 }
 
+export const getAuditsB64 = async (req:Request, res:Response)=>{
+    try{
+        const audits:any = await Audit.find()
+        return res.json(btoa(JSON.stringify(audits)))
+    }catch(error){
+        if(error instanceof Error){
+            res.status(500).json({"error":error.message})
+        }
+    }
+}
+
+
 export const updateAudits = async (req:Request, res:Response)=>{
     try{
         const {id} = req.params
@@ -56,6 +68,39 @@ export const updateAudits = async (req:Request, res:Response)=>{
         //     }
         // )
         return res.sendStatus(204)
+
+    }catch(error){
+        if(error instanceof Error){
+            res.status(500).json({"error":error.message})
+        }
+    }
+}
+
+export const getAuditId = async (req:Request, res:Response)=>{
+    try{
+        const {id} = req.params
+
+        let audit = await Audit.findOneBy({id:Number(id)})
+        if(!audit) return res.status(404).json({"error":"audit not found"})
+
+        console.log(audit)
+        return res.json(audit)
+
+    }catch(error){
+        if(error instanceof Error){
+            res.status(500).json({"error":error.message})
+        }
+    }
+}
+
+export const getAuditIdB64 = async (req:Request, res:Response)=>{
+    try{
+        const {id} = req.params
+        let audit = await Audit.findOneBy({id:Number(id)})
+        if(!audit) return res.status(404).json({"error":"audit not found"})
+
+        console.log(audit)
+        return res.json(btoa(JSON.stringify(audit)))
 
     }catch(error){
         if(error instanceof Error){
