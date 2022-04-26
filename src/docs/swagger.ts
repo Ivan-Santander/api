@@ -7,7 +7,7 @@ const swaggerDefinition: OAS3Definition = {
     version: "1.0.0",
   },
   servers: [
-    {
+    {                
       url: "http://localhost:4000",
     },
   ],
@@ -21,7 +21,7 @@ const swaggerDefinition: OAS3Definition = {
     schemas: {
       audit: {
         type: "object",
-        required: ["method","status","type"],
+        required: ["method","status","type","response"],
         properties: {
           method: {
             type: "string",
@@ -30,6 +30,9 @@ const swaggerDefinition: OAS3Definition = {
             type: "number",
           },
           type: {
+            type: "string",
+          },
+          response: {
             type: "string",
           },
         },

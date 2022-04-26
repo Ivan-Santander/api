@@ -4,13 +4,13 @@ import request from 'request'
 
 export const createAudit = async (req:Request,res:Response) =>{
     try{
-        const {method,status,type} = req.body
+        const {method,status,type,response} = req.body
         const audit = new Audit()
         audit.method = method
         audit.status = status
         audit.type = type
+        audit.response = response
         await audit.save()
-        
         console.log({"req":req.body})
         res.send({"req":req.body})
     }catch(error){

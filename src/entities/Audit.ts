@@ -12,6 +12,8 @@ export class Audit extends BaseEntity{
     status:number
     @Column()
     type:string
+    @Column()
+    response:string
     @CreateDateColumn()
     created_at:Date
     @UpdateDateColumn()

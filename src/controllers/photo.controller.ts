@@ -25,22 +25,25 @@ export const photoUser = async (req:Request,res:Response) =>{
                         if(length == i){
                             i++
                             photos.push(JSON.parse(body));
-                            const json:any = {"method":method,"status":status,"type":type}
 
-                            request({
-                                url: `${AppSettings.API_ENDPOINT}audit/create`,
-                                method: "POST",
-                                headers: {
-                                    "content-type": "application/json",
-                                    },
-                                json: json
-                                }, function (error, resp, body) {
-                                    if(!error)
-                                        return res.json(photos)
-                                    else
-                                        return res.status(500).json({error})
-                                }
-                            )
+                            setTimeout(() => {
+                                const json:any = {"method":method,"status":status,"type":type,"response":JSON.stringify(photos)}
+                                request({
+                                    url: `${AppSettings.API_ENDPOINT}audit/create`,
+                                    method: "POST",
+                                    headers: {
+                                        "content-type": "application/json",
+                                        },
+                                    json: json
+                                    }, function (error, resp, body) {
+
+                                        if(!error)
+                                            return res.json(photos)
+                                        else
+                                            return res.status(500).json({error})
+                                    }
+                                )
+                            }, 1500);
                         }
                         else{
                             photos.push(JSON.parse(body));

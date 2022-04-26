@@ -20,22 +20,22 @@ Se consumió una api externa y se realizo el registro de las peticiones en Postg
 
 - Crear la base de datos en postgresql  ***De preferencia con el nombre i4digital cambiar solamente si es necesario***
 - Configurar Base de datos en **src/db.ts**  --- ***Solo si es necesario***
-    `const HOSTDB = "localhost" `
-    `const PORTDB = 5432 `
-	`const USERDB = "postgres"`
-	`const PWDB = "admin"`
-	`const DB = "i4digital"`
+    - `const HOSTDB = "localhost"`
+    - `const PORTDB = 5432`
+	- `const USERDB = "postgres"`
+	- `const PWDB = "admin"`
+	- `const DB = "i4digital"`
 
 - Configurar puerto en **src/environment.dev.ts**  --- ***solo si es necesario***
-    `public static API_ENDPOINT='http://127.0.0.1:4000/api/'`
-    `public static PORT = 4000`
+    - `public static API_ENDPOINT='http://127.0.0.1:4000/api/'`
+    - `public static PORT = 4000`
 
-##Entorno de desarrollo
+## Entorno de desarrollo
 - Correr servidor de desarrollo
-	`npm run dev`
+	- `npm run dev`
 
-##Contruir proyecto
+## Contruir proyecto
 - Contruir proyecto
-	`npm run build`
+	- `npm run build`
 - Iniciar servidor
-	`npm start`
+	- `npm start`

@@ -11,7 +11,7 @@ export const listUsers = async (req:Request,res:Response) =>{
             const method:string = req.method
             const status:number = response.statusCode
             const type:string = "list users"
-            const json:any = {"method":method,"status":status,"type":type}
+            const json:any = {"method":method,"status":status,"type":type,"response":body}
             request({
                 url: `${AppSettings.API_ENDPOINT}audit/create`,
                 method: "POST",
