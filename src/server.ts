@@ -12,5 +12,5 @@ app.use(morgan('dev'))
 app.use(cors())
 app.use(express.json())
 app.use(Routes)
-app.use("/",swaggerUi.serve,swaggerUi.setup(SwaggerSetup))
+app.use("/docs",swaggerUi.serve,swaggerUi.setup(SwaggerSetup))
 export default app

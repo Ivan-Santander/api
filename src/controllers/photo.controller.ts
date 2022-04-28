@@ -15,7 +15,7 @@ export const photoUser = async (req:Request,res:Response) =>{
             let photos:any = []
             let i = 0
             let length = albums.length
-            console.log("body.length--->",albums.length)
+            // console.log("body.length--->",albums.length)
             if(albums.length == 0) return res.status(404).send("data not found")
             albums.forEach(function (element:any) {
                 i++
