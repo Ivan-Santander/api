@@ -30,6 +30,10 @@ Se consumió una api externa y se realizo el registro de las peticiones en Postg
     - `public static API_ENDPOINT='http://127.0.0.1:4000/api/'`
     - `public static PORT = 4000`
 
+## Pruebas
+- Ejecutar test unitario
+	- `npm test`
+
 ## Entorno de desarrollo
 - Correr servidor de desarrollo
 	- `npm run dev`
