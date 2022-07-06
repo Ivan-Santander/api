@@ -1,5 +1,10 @@
 import {DataSource} from 'typeorm'
-import {Audit} from './entities/Audit'
+import {Users} from './entities/Users'
+import {Locations} from './entities/Locations'
+import {Messages} from './entities/Messages'
+import {Orders} from './entities/Orders'
+import {Roles} from './entities/Roles'
+import {Tracks} from './entities/Tracks'
 
 
 //////DATABASE CONFIGURATION
@@ -10,7 +15,7 @@ const HOSTDB = "localhost"
 const PORTDB = 5432 
 const USERDB = "postgres" ///USERNAME ASSIGNED TO THE DATABASE
 const PWDB = "admin"  ///PASSWORD ASSIGNED TO THE DATABASE
-const DB = "i4digital"   ///DATABASE NAME
+const DB = "deliv"   ///DATABASE NAME
 
 
 
@@ -21,7 +26,7 @@ export const AppDataSource = new DataSource({
     username: USERDB,
     password: PWDB,
     database: DB,
-    entities: [Audit],
+    entities: [Users,Locations,Messages,Orders,Roles,Tracks],
     logging: true,
     synchronize: true,
     // subscribers: [],

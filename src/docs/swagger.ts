@@ -19,24 +19,152 @@ const swaggerDefinition: OAS3Definition = {
       },
     },
     schemas: {
-      audit: {
+      users: {
         type: "object",
-        required: ["method","status","type","response"],
+        required: ["name","lastname","type_document","document","indicative","phone","status"],
         properties: {
-          method: {
+          name: {
             type: "string",
+          },
+          lastname: {
+            type: "string",
+          },
+          type_document: {
+            type: "string",
+          },
+          document: {
+            type: "number",
+          },
+          indicative: {
+            type: "string",
+          },
+          phone: {
+            type: "number",
           },
           status: {
             type: "number",
           },
-          type: {
-            type: "string",
+          role_admin: {
+            type: "boolean",
           },
-          response: {
+          role_logistics: {
+            type: "boolean",
+          },
+          role_delivery: {
+            type: "boolean",
+          },
+          role_patient: {
+            type: "boolean",
+          },
+          street_address: {
+            type: "string",
+          }
+        },
+      },
+
+      roles:{
+        type: "object",
+        required: ["role_user","admin","logistics","patient","delivery","technical","userid"],
+        properties: {
+          role_user: {
+            type: "boolean",
+          },
+          admin: {
+            type: "boolean",
+          },
+          logistics: {
+            type: "boolean",
+          },
+          patient: {
+            type: "boolean",
+          },
+          delivery: {
+            type: "boolean",
+          },
+          technical: {
+            type: "boolean",
+          },
+          userid: {
             type: "string",
           },
         },
       },
+      locations:{
+        type: "object",
+        required: ["street_address","latitude","longitude","accuracy","altitude_accuracy","speed","heading","altitude","userid"],
+        properties: {
+          street_address: {
+            type: "string",
+          },
+          latitude: {
+            type: "number",
+          },
+          longitude: {
+            type: "number",
+          },
+          accuracy: {
+            type: "number",
+          },
+          altitude_accuracy: {
+            type: "number",
+          },
+          speed: {
+            type: "number",
+          },
+          heading: {
+            type: "number",
+          },
+          altitude: {
+            type: "number",
+          },
+          userid: {
+            type: "string",
+          },
+        },
+      },
+      
+      orders:{
+        type: "object",
+        required: ["street_address","latitude","longitude","accuracy","altitude_accuracy","speed","heading","altitude","iduser_delivery","iduser_patient","iduser_logistic"],
+        properties: {
+          street_address: {
+            type: "string",
+          },
+          latitude: {
+            type: "number",
+          },
+          longitude: {
+            type: "number",
+          },
+          accuracy: {
+            type: "number",
+          },
+          altitude_accuracy: {
+            type: "number",
+          },
+          speed: {
+            type: "number",
+          },
+          heading: {
+            type: "number",
+          },
+          altitude: {
+            type: "number",
+          },
+          iduser_delivery: {
+            type: "string",
+          },
+          iduser_patient: {
+            type: "string",
+          },
+          iduser_logistic: {
+            type: "string",
+          },
+          order: {
+            type: "string",
+          },
+        },
+      }
       
     },
   },
